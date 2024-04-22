@@ -1,0 +1,61 @@
+TODO HAY QUE HACERLO DESDE EL TERMINAL EN LA CARPETA DEL PROYECTO
+ 
+crear proyecto:
+    composer create-project Laravel/Laravel nombreProyecto
+ 
+    dar privilegios si estamos en linux:
+        sudo chmod -R 777 nombreProyecto
+    
+    
+crear controlador:
+    php artisan make:controller micontrolador
+    
+crear clase Modal:
+    php artisan make:Model ClaseModal
+    
+        class Persona extends Model
+        {
+            //protected $table = 'personas'; //Por defecto tomaría la tabla 'personas'.
+            protected $primaryKey = 'DNI';  //Por defecto el campo clave es 'id', entero y autonumérico.
+            public $incrementing = false; //Para indicarle que la clave no es autoincremental.
+            protected $keyType = 'string';   //Indicamos que la clave no es entera.
+            public $timestamps = false;   //Con esto Eloquent no maneja automáticamente created_at ni updated_at.
+            
+        }
+        
+En todo formulario tiene que tener está linea despues de <form method="post">
+    {!! csrf_field() !!}
+    
+    
+Para crear tu objeto en LAravel:
+        1.- Creas la carpeta clases que cuelga directamente de app.
+        2.- La clase debe tener el namespace: 
+        namespace App\Clases;
+        /*
+        * To change this license header, choose License Headers in Project Properties.
+        * To change this template file, choose Tools | Templates
+        * and open the template in the editor.
+        */
+
+        /**
+        * Description of Persona
+        *
+        * @author fernando
+        */
+        class Persona {
+        ...
+
+        3.- Modificas el archivo app.php de config añadiendo:
+        'Persona' => App\Clases\Persona::class,
+
+        4.- En el controlador pones:
+        use App\Clases\Persona;
+        Y ya la puedes usar:
+        $pers = new Persona($n,$e);
+
+
+        5.- En las vistas.
+        No hace falta poner nada especial.
+
+        $otrapersona = new Persona('ejemplo',19);
+        echo 'Objeto creado en la vista: '.$otrapersona;

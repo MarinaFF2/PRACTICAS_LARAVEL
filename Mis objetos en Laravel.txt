@@ -1,0 +1,32 @@
+Para crear tu objeto en LAravel:
+1.- Creas la carpeta clases que cuelga directamente de app.
+2.- La clase debe tener el namespace: 
+namespace App\Clases;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of Persona
+ *
+ * @author fernando
+ */
+class Persona {
+...
+
+3.- Modificas el archivo app.php de config añadiendo:
+'Persona' => App\Clases\Persona::class,
+
+4.- En el controlador pones:
+use App\Clases\Persona;
+Y ya la puedes usar:
+$pers = new Persona($n,$e);
+
+
+5.- En las vistas.
+No hace falta poner nada especial.
+
+$otrapersona = new Persona('ejemplo',19);
+echo 'Objeto creado en la vista: '.$otrapersona;
